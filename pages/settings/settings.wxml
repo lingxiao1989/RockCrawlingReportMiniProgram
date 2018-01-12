@@ -1,0 +1,137 @@
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+
+
+<view class="page-section1">
+<view class="page-head">
+    <view class="page-head-title">附加自定义数据来源，时间，金额，项目类型为条件进行查询</view>
+    <view class="page-head-line"></view>
+  </view>
+
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">条件名称:</view>
+      </view>
+      <input class="weui-input" auto-focus bindinput="bindFilterNameInput"  value="{{currentFilter.filterName}}"/>
+    </view>
+  </view>
+
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title" bindtap="tapSource">
+    <view class="weui-cell weui-cell_input" >
+      <view class="weui-cell__hd">
+        <view class="weui-label">数据来源:</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="weui-input">{{sourceArray[currentFilter.sourceIndex].name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="kind-list-item-bd {{showSource ? 'kind-list-item-bd-show' : ''}}" style="border-bottom-left-radius:15px;border-bottom-right-radius:15px;">
+    <view class="navigator-box {{showSource ? 'navigator-box-show' : ''}}">
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="radioChangeSource">
+          <label class="weui-cell weui-check__label" wx:for="{{sourceArray}}" wx:for-item="source">
+            <view class="weui-cell__hd">
+              <radio value="{{source.index}}" checked="{{currentFilter.sourceIndex==source.index}}"/>
+            </view>
+            <view class="weui-cell__bd">{{source.name}}</view>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title" bindtap="tapTimeRange">
+    <view class="weui-cell weui-cell_input" >
+      <view class="weui-cell__hd">
+        <view class="weui-label">时间范围:</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="weui-input">{{timeRangeArray[currentFilter.timeRangeIndex].name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="kind-list-item-bd {{showTimeRange ? 'kind-list-item-bd-show' : ''}}" style="border-bottom-left-radius:15px;border-bottom-right-radius:15px;border-radius:15px;">
+    <view class="navigator-box {{showTimeRange ? 'navigator-box-show' : ''}}">
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="radioChangeTimeRange">
+          <label class="weui-cell weui-check__label" wx:for="{{timeRangeArray}}" wx:for-item="timeRange">
+            <view class="weui-cell__hd">
+              <radio value="{{timeRange.index}}" checked="{{currentFilter.timeRangeIndex==timeRange.index}}"/>
+            </view>
+            <view class="weui-cell__bd">{{timeRange.name}}</view>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input" >
+      <view class="weui-cell__hd">
+        <view class="weui-label">价格范围:</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type="digit" class="weui-input" bindinput="bindLowerBoundInput"  value="{{currentFilter.priceLowerBound}}" placeholder="不限"/>
+      </view>
+      <!-- <text style="padding-right:15rpx;color: grey;">万元</text> -->
+      <text style="padding-right:35rpx;">—</text>
+      <view class="weui-cell__bd">
+        <input type="digit" class="weui-input" bindinput="bindUpperBoundInput"  value="{{currentFilter.priceUpperBound}}" placeholder="不限"/>
+      </view>
+      <text style="padding-right:15rpx;">（万元）</text>
+    </view>
+  </view>
+
+  <view class="weui-cells__title"></view>
+  <view class="weui-cells weui-cells_after-title" bindtap="tapTag">
+    <view class="weui-cell weui-cell_input" >
+      <view class="weui-cell__hd">
+        <view class="weui-label">标签类型:</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="weui-input">{{currentFilter.tagName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="kind-list-item-bd {{showTag ? 'kind-list-item-bd-show' : ''}}" style="border-bottom-left-radius:15px;border-bottom-right-radius:15px;">
+    <view class="navigator-box {{showTag ? 'navigator-box-show' : ''}}">
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="radioChangeTag">
+          <label class="weui-cell weui-check__label" wx:for="{{tagArray}}" wx:for-item="tag">
+            <view class="weui-cell__hd">
+              <radio value="{{tag.name}}" checked="{{currentFilter.tagName==tag.name}}"/>
+            </view>
+            <view class="weui-cell__bd">{{tag.name}}</view>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <view class="button-area">
+    <button class="confirm-btn" bindtap="{{searchStart ? '' :'bindConfirmTap' }}" type="primary" loading="{{searchStart ? 'true' : ''}}">
+      <text>保存并使用</text>
+      <!-- <icon class="weui-icon-search_in-box" type="search" size="16" color="#fff"></icon> -->
+    </button>
+    <button class="confirm-btn" bindtap="{{searchStart ? '' :'bindDeleteTap' }}" type="primary" style="background:#E64340;" loading="{{searchStart ? 'true' : ''}}">
+      <text>删除该条件</text>
+    </button>
+  </view>
+  
+</view>
+<view style="position:relative;margin-top:100rpx;margin-bottom:40rpx;text-align:center;">
+<image class="icon-foot" style="" src="../../common/image/logo1207.png"></image>
+</view>
+<!-- <view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view> -->
+

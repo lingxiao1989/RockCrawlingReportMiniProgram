@@ -1,0 +1,78 @@
+<!--pages/results/results.wxml-->
+<import src="../templates/item-template.wxml" />
+<loading hidden="{{hiddenLoading}}">数据正在加载</loading>
+
+<view class="weui-search-bar"  style="width:100%;height:250rpx;background:#1AAD19; border:none;position:fixed;z-index:999;top:0;">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box" style="height:80rpx;">
+      <icon class="weui-icon-search_in-box" type="search" size="16" color="#1AAD19" bindtap="startSearching" style="top:24rpx;"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索关键字" placeholder-style="color:#000;" value="{{inputValue}}" bindfocus="wxSearchFocus" bindinput="wxSearchInput"  bindconfirm="startSearching" />
+      <view class="weui-icon-clear" wx:if="{{inputValue.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="16" style="top:24rpx;position:absolute;" color="#1AAD19"></icon>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="filter-group">
+    <label class="radio">
+      <radio id="0" bindtap="tapRadio" checked="{{radio[0].checked}}"><text style="color:#fff;">{{radio[0].name}}</text></radio>
+    </label>
+    <label class="radio">
+      <radio id="1" bindtap="tapRadio" checked="{{radio[1].checked}}"><text style="color:#fff;">{{radio[1].name}}</text></radio>
+    </label>
+    <label class="radio">
+      <radio id="2" bindtap="tapRadio" checked="{{radio[2].checked}}"><text style="color:#fff;">{{radio[2].name}}</text></radio>
+    </label>
+    <label class="radio">
+      <radio id="3" bindtap="tapRadio" checked="{{radio[3].checked}}"><text style="color:#fff;">{{radio[3].name}}</text></radio>
+    </label>
+  </view>
+  <view class="{{showFilterPanel?'more-filter-show':'more-filter'}}" bindtap="tapChooseFilter" >
+    <text>{{currentFilterName}}</text>
+    <image src="../../common/image/pull_down.png" class="pull-down-image"></image>
+  </view>
+</view>
+
+<scroll-view scroll-y="{{scrollable}}" bindscrolltolower="onReachBottom" scroll-top="{{gotop}}" style="height:{{scrollViewHeight}}px;margin-top:250rpx;">
+
+    <!--dialog-->
+  <view class="filter-box" data-id="filterID" wx:if="{{showFilterPanel}}">
+    <view wx:for="{{filters}}" wx:for-item="oneFilter" >
+      <view class="custom-filter">
+        <view class="custom-filter-name" data-row="{{oneFilter}}" bindtap="tapCustomFilter">{{oneFilter.filterName}}</view>
+        <image src="../../common/image/setting.png" class="side-image" data-row="{{oneFilter.index}}" bindtap="tapFilterSetting"></image>
+      </view>
+    </view>
+    <view class="add-filter" bindtap="tapAddFilter">
+      <text>新增条件</text>
+      <image src="../../common/image/add.png" class="side-image"></image>
+    </view>
+  </view>
+
+  <view class="search-history-box" data-id="searchHistory" wx:if="{{showSearchPanel}}">
+    <view wx:for="{{history}}" wx:for-item="oneRecord" >
+      <view class="search-history">
+        <view style="white-space:nowrap;" data-row="{{oneRecord}}" bindtap="tapSearchHistory">{{oneRecord}}</view>
+      </view>
+    </view>
+    <view class="clear-search-history" bindtap="clearSearchHistory">清空历史记录</view>
+  </view> 
+
+
+  <view scroll-y="true" style="width:100%;z-index:1;margin-bottom:20pt;">
+
+    <block wx:for="{{results}}" wx:for-item="row" wx:key="id">
+      <view class="weui-cells weui-cells_after-title" >
+        <template is="itemTemplate" data="{{row:row,bottomLayerDisabled:bottomLayerDisabled,currentKeyword:currentKeyword}}" />
+      </view>
+    </block>
+    
+  </view>
+
+  <view class="fix_tip_relative">
+    <text class="hidden_tip {{atBottomReminder?'disabled':''}}">没有结果啦</text>
+  </view>
+
+</scroll-view> 
+

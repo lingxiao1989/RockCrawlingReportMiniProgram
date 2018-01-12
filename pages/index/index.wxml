@@ -1,0 +1,44 @@
+<!--index.wxml-->
+
+<view class="page-section2">
+
+  <block wx:if="{{!hasUserInfo && canIUse}}">
+    <text class="title-text">政采网信息查询系统</text>
+    <text class="welcome-text" style="top:-78%;">欢迎使用！请登录 </text>
+    <button class="getUserInfo-button confirm-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin: 50rpx 34%;">
+      <text style="font-size:30rpx;color:#1AAD19;">使用微信登入</text>
+    </button>
+  </block>
+  <block wx:else>
+    <text class="title-text">政采网信息查询系统</text>
+    <text class="welcome-text">{{userInfo.nickName}}, 欢迎使用! </text>
+    <view class="content">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <image class="wave" src="../../common/image/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="../../common/image/wave.png" mode="aspectFill"></image>
+      </view>
+
+      <view class="bd">
+        <view class="search-bar__form" style="margin: 0 3%;height:80rpx;border-radius:5px;background:#FFFFFF;border:1rpx solid #E6E6EA;">
+          <view class="weui-search-bar__box" style="height:80rpx;">
+            <input type="text" class="weui-search-bar__input" placeholder="搜索关键字" placeholder-style="color:#000;" value="{{inputValue}}" bindinput="wxSearchInput" bindconfirm="startSearching"/>
+            <view class="weui-icon-clear" wx:if="{{inputValue.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="16" style="top:24rpx;position:absolute;" color="#1AAD19"></icon>
+            </view>
+          </view>
+        </view>
+
+        <button class="confirm-btn" type="primary" bindtap="startSearching">
+          <text class="confirm-text">开始查询</text>
+          <icon class="weui-icon-search_in-box" type="setting" size="16" color="#fff"></icon>
+        </button>
+
+        <view style="margin-top:60rpx;text-align:center;width:100%;">
+        <image class="icon-foot"  src="../../common/image/logo1207.png"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+  
+</view>

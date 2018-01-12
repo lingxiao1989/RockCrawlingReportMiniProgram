@@ -1,0 +1,35 @@
+.row-title {
+    margin-bottom: 16rpx;
+    font-size: 30rpx;
+}
+
+.navigator-arrow {
+  padding-right: 26rpx;
+  position: relative;
+  flex:1;
+  color: #000;
+}
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #000;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
+}
+.tag {
+  color:#fff;
+  font-size:30rpx;
+  text-align:center;
+  zoom:0.8;
+  white-space:nowrap; 
+  padding:0px 5px;
+  border-radius: 5px;
+  background: orange;
+}

@@ -1,0 +1,143 @@
+/* pages/results/result-details/result-details.wxss */
+/* pages/userProfile/userProfile.wxss */
+
+.head-img{
+    width:100%;
+    height: 320rpx;
+    -webkit-filter:blur(20px);
+}
+
+.head-img-hover{
+    width: 100%;
+    height: 320rpx;
+    position:absolute;
+    top:0;
+    left:0;
+    display:flex;
+    flex-direction: column;
+}
+
+.itemName{
+    font-size: 19px;
+    color:#000;
+    font-weight:900;
+    padding:40rpx;
+    letter-spacing: 2px;
+    text-align:center;
+
+}
+
+.itemSubName{
+    font-size: 28rpx;
+    color:#000;
+    padding-bottom:40rpx;
+    text-align:center;
+}
+
+.like{
+    display:flex;
+    flex-direction: row;
+    margin-top: 30rpx;
+    margin-left: 40rpx;
+}
+
+.highlight-font{
+    color: #f21146;
+    font-size:22rpx;
+    margin-right: 10rpx;
+}
+
+.plain-font{
+    color: #666;
+    font-size:22rpx;
+    margin-right: 30rpx;
+}
+
+
+.userinfo-avatar{
+    position: absolute;
+    top:160rpx;
+    right: 30rpx;
+    z-index: 2;
+    left: 50%;
+    bottom: 200rpx;
+    width: 160rpx;
+    height: 160rpx;
+    margin-left: -80rpx;
+    border-radius: 160rpx;
+    animation: sway 10s ease-in-out infinite;
+    opacity: .95;
+}
+
+.summary{
+    margin:15rpx;
+    width:90%;
+}
+
+.content{
+    table-layout:fixed;
+    word-break: break-all;
+    overflow:hidden;  
+}
+
+.original-title{
+    color: #1f3463;
+    font-size: 24rpx;
+    font-weight: bold;
+    margin-bottom: 40rpx;
+}
+
+.flex-row{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 10rpx;
+}
+
+.title{
+    margin-right: 30rpx;
+    white-space:nowrap;
+
+}
+
+.hr{
+    height:1px;
+    width: 100%;
+    background-color: #d9d9d9;
+}
+
+.synopsis{
+    margin-left:40rpx;
+    display:flex;
+    flex-direction: column;
+    margin-top: 50rpx;
+}
+
+.synopsis-font{
+    color:#999;
+}
+
+
+
+.cast{
+    margin-left:40rpx;
+    display:flex;
+    flex-direction: column;
+    margin-top:50rpx;
+}
+
+
+
+.cast-container{
+    display:inline-flex;
+    flex-direction: column;
+    margin-bottom: 50rpx;
+    margin-right: 40rpx;
+    width: 170rpx;
+    text-align:center;
+    white-space: normal;
+}
+
+.teamList{
+    white-space: nowrap;
+}
+

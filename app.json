@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/results/results",
+    "pages/results/result-details/result-details",
+    "pages/settings/settings"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#1AAD19",
+    "navigationBarTextStyle":"#fff"
+  }
+}
