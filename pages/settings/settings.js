@@ -13,7 +13,7 @@ var pageObject = {
       timeRangeIndex:0,
       priceLowerBound: "",
       priceUpperBound: "",
-      tagName: "类型不限"
+      tagName: ""
     },
     currentFilterPosition:"",
     createNewFilter:true,
@@ -31,7 +31,7 @@ var pageObject = {
     ],
     showTimeRange: false,
     tagArray: [
-      { index: 0, name: '类型不限', checked: true },
+      { index: 0, name: "", checked: true },
       { index: 1, name: '机械加工', checked: false },
       { index: 2, name: '水利行业', checked: false },
       { index: 3, name: '景观绿化', checked: false },
@@ -93,7 +93,7 @@ var pageObject = {
           timeRangeIndex: 0,
           priceLowerBound: "",
           priceUpperBound: "",
-          tagName: "类型不限"
+          tagName: ""
         };
         _this.setData({
           currentFilter: currentFilter
@@ -107,7 +107,7 @@ var pageObject = {
           timeRangeIndex: 0,
           priceLowerBound: "",
           priceUpperBound: "",
-          tagName: "类型不限"
+          tagName: ""
         };
         _this.setData({
           currentFilter: currentFilter
@@ -146,7 +146,7 @@ var pageObject = {
       showSource: !showSource
     });
   },
-  //选中来源
+  //变换来源
   radioChangeSource: function (event) {
     var sourceArray = this.data.sourceArray;
     var currentFilter = this.data.currentFilter;
@@ -161,6 +161,13 @@ var pageObject = {
     });
     // console.log(this.data.currentFilter);
   },
+  //点击任意一行来源
+  tapSourceRow: function () 
+  {
+    this.setData({
+      showSource: false
+    });
+  },
   //点击选择时间
   tapTimeRange: function () {
     var showTimeRange = this.data.showTimeRange;
@@ -168,7 +175,7 @@ var pageObject = {
       showTimeRange: !showTimeRange
     });
   },
-  //选中时间
+  //变换时间
   radioChangeTimeRange: function (event) {
     var timeRangeArray = this.data.timeRangeArray;
     var currentFilter = this.data.currentFilter;
@@ -179,6 +186,12 @@ var pageObject = {
     this.setData({
       timeRangeArray: timeRangeArray,
       currentFilter: currentFilter,
+      showTimeRange: false
+    });
+  },
+  //点击任意一行时间
+  tapTimeRangeRow: function () {
+    this.setData({
       showTimeRange: false
     });
   },
@@ -206,7 +219,7 @@ var pageObject = {
     });
     // console.log(this.data);
   },
-  //选中标签
+  //变换标签
   radioChangeTag: function(event){
     var tagArray = this.data.tagArray;
     var currentFilter = this.data.currentFilter;
@@ -217,6 +230,13 @@ var pageObject = {
     this.setData({
       tagArray: tagArray,
       currentFilter: currentFilter,
+      showTag: false
+    });
+    //console.log(this.data);
+  },
+  //点击任意一行标签
+  tapTagRow: function () {
+    this.setData({
       showTag: false
     });
   },
@@ -235,8 +255,7 @@ var pageObject = {
     wx.redirectTo({
       url: '../results/results?all=' + this.data.keywords + '&useFilterName=' + this.data.currentFilter.filterName + '&useFilterIndex=' + this.data.currentFilter.index,
       success: function () {
-        // if (page == undefined || page == null) { return; }
-        // page.onLoad();
+
       }
     });
   },

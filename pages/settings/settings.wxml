@@ -38,7 +38,7 @@
             <view class="weui-cell__hd">
               <radio value="{{source.index}}" checked="{{currentFilter.sourceIndex==source.index}}"/>
             </view>
-            <view class="weui-cell__bd">{{source.name}}</view>
+            <view class="weui-cell__bd" bindtap="tapSourceRow">{{source.name}}</view>
           </label>
         </radio-group>
       </view>
@@ -64,7 +64,7 @@
             <view class="weui-cell__hd">
               <radio value="{{timeRange.index}}" checked="{{currentFilter.timeRangeIndex==timeRange.index}}"/>
             </view>
-            <view class="weui-cell__bd">{{timeRange.name}}</view>
+            <view class="weui-cell__bd" bindtap="tapTimeRangeRow">{{timeRange.name}}</view>
           </label>
         </radio-group>
       </view>
@@ -96,7 +96,8 @@
         <view class="weui-label">标签类型:</view>
       </view>
       <view class="weui-cell__bd">
-        <view class="weui-input">{{currentFilter.tagName}}</view>
+        <view class="weui-input" wx:if="{{currentFilter.tagName==''}}">类型不限</view>
+        <view class="weui-input" wx:else>{{currentFilter.tagName}}</view>
       </view>
     </view>
   </view>
@@ -108,7 +109,8 @@
             <view class="weui-cell__hd">
               <radio value="{{tag.name}}" checked="{{currentFilter.tagName==tag.name}}"/>
             </view>
-            <view class="weui-cell__bd">{{tag.name}}</view>
+            <view class="weui-cell__bd" wx:if="{{tag.name==''}}" bindtap="tapTagRow">类型不限</view>
+            <view class="weui-cell__bd" wx:else bindtap="tapTagRow">{{tag.name}}</view>
           </label>
         </radio-group>
       </view>

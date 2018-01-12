@@ -44,7 +44,7 @@ Page({
       timeRangeIndex: 0,
       priceLowerBound: "",
       priceUpperBound: "",
-      tagName: "类型不限"
+      tagName: ""
     },
     scrollViewHeight:0
   },
@@ -53,17 +53,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (query) {
-    //console.log(app.globalData.userInfo)
-    //构建测试数据
-    // let data = new Array();
-    // let dialog = new Array();
-    // for (let i = 0; i < 25; i++) {
-    //   data[i] = '我是测试-----------' + i;
-    //   dialog[i] = {
-    //     name: '我是弹窗-' + i,
-    //     isSelected: false
-    //   };
-    // }
     var scrollViewHeight=0;
     wx.getSystemInfo({
       success: function (res) {
@@ -145,11 +134,6 @@ Page({
       }
     }
     for (var index in ObtainedData.rows) {
-      // var row = ObtainedData.rows[index];
-      // var name = row.name;
-      // if (name.length >= 20) {
-      //   name = name.substring(0, 20) + "...";
-      // }
       util.convertTimeFormat(ObtainedData.rows[index]);
       util.convertContentFormat(ObtainedData.rows[index]);
       util.convertToTitleArray(ObtainedData.rows[index], _this.data.inputValue);
@@ -241,20 +225,12 @@ Page({
   },
   //焦点离开
   wxSearchBlur: function (event) {
-    // var text = event.detail.value;
-    // if (text != null && text.length > 0) {
-    //   var history = wx.getStorageSync('history') || [];
-    //   history.unshift(text);
-    //   wx.setStorageSync('history', history);
-    // }
     this.setData({
       showSearchPanel: false,
       showFilterPanel: false,
       bottomLayerDisabled: false,
       scrollable: true,
     });
-    // var searchUrl = app.globalData.doubanBase + "/v2/movie/search?q=" + text;
-    // this.getMovieListData(searchUrl, "searchResult", "");
   },
 
   tapRadio:function(event){
@@ -305,7 +281,7 @@ Page({
       currentFilter: event.currentTarget.dataset.row,
       currentFilterName: event.currentTarget.dataset.row.filterName,
     });
-    console.log(this.data);
+    //console.log(this.data);
   },
   tapFilterSetting: function (event) {
     wx.navigateTo({
@@ -314,6 +290,24 @@ Page({
         // if (page == undefined || page == null) { return; }
         // page.onLoad();
       }
+    });
+  },
+  tapNoFilter: function () {
+    var currentFilter= {
+      index: "",
+      filterName: "",
+      sourceIndex: 0,
+      timeRangeIndex: 0,
+      priceLowerBound: "",
+      priceUpperBound: "",
+      tagName: ""
+    };
+    this.setData({
+      showFilterPanel: false,
+      scrollable: true,
+      bottomLayerDisabled: false,
+      currentFilter: currentFilter,
+      currentFilterName: "自定义条件",
     });
   },
   tapAddFilter: function () {
@@ -333,7 +327,6 @@ Page({
   /**
    * 显示、关闭弹窗
    */
-
 
   /**
      * 生命周期函数--监听页面初次渲染完成

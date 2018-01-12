@@ -123,9 +123,19 @@ search-history.highlight {
   height: 30rpx;
   padding:16rpx 10px;
 }
-.add-filter{
+.no-filter{
   position:relative;
   
+  text-align:center;
+  color:#000;
+  font-size:30rpx;
+  background:#fff;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+.add-filter{
+  position:relative;
+  border-bottom: 1px solid #000; 
   text-align:center;
   color:#000;
   font-size:30rpx;
