@@ -103,45 +103,47 @@ search-history.highlight {
 .custom-filter {
   position: relative;
   font-size: 30rpx; 
-  line-height: 60rpx; 
+  line-height: 70rpx; 
   color: #000; 
-  height: 60rpx; 
+  height: 70rpx; 
   display: block; 
-  padding-left: 20px; 
+
   background-color: #fff; 
   border-bottom: 1px solid #000; 
 }
 .custom-filter-name{
   position: absolute;
-  width:580rpx;
+  width:100%;
   white-space:nowrap;
+  text-align: center;
 }
 .side-image {
   position: absolute;
   right:0;
-  width: 30rpx;
-  height: 30rpx;
-  padding:16rpx 10px;
+  width: 32rpx;
+  height: 32rpx;
+  padding:20rpx 20rpx;
+  float:right;
 }
 .no-filter{
   position:relative;
-  
+
   text-align:center;
-  color:#000;
+  color: grey;
   font-size:30rpx;
   background:#fff;
-  line-height: 60rpx;
-  height: 60rpx;
+  line-height: 70rpx;
+  height: 70rpx;
 }
 .add-filter{
   position:relative;
   border-bottom: 1px solid #000; 
   text-align:center;
-  color:#000;
+  color: #000;
   font-size:30rpx;
   background:#fff;
-  line-height: 60rpx;
-  height: 60rpx;
+  line-height: 70rpx;
+  height: 70rpx;
 }
 .hidden_tip{
   font-size: 9pt;

@@ -38,18 +38,21 @@
 
     <!--dialog-->
   <view class="filter-box" data-id="filterID" wx:if="{{showFilterPanel}}">
-    <view class="add-filter" bindtap="tapAddFilter">
-      <text>新增条件</text>
-      <image src="../../common/image/add.png" class="side-image"></image>
-    </view>
+
     <view wx:for="{{filters}}" wx:for-item="oneFilter" >
       <view class="custom-filter">
-        <view class="custom-filter-name" data-row="{{oneFilter}}" bindtap="tapCustomFilter">{{oneFilter.filterName}}</view>
+        <view class="custom-filter-name" data-row="{{oneFilter}}" bindtap="tapCustomFilter" >
+        {{oneFilter.filterName}}
+        </view>
         <image src="../../common/image/setting.png" class="side-image" data-row="{{oneFilter.index}}" bindtap="tapFilterSetting"></image>
       </view>
     </view>
+        <view class="add-filter" bindtap="tapAddFilter">
+      <text>新增条件</text>
+      <image src="../../common/image/add.png" class="side-image"></image>
+    </view>
     <view class="no-filter" bindtap="tapNoFilter">
-      <text>无自定义条件</text>
+      <text>取消</text>
     </view>
   </view>
 
